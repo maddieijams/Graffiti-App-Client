@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
     Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Button} from 'reactstrap';
 
+
     const sticky = {
         position: 'fixed'
     }

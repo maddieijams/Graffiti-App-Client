@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Container, Row, Col } from 'reactstrap';
+import APIURL from '../helpers/environment';
 
 class UpdateModal extends Component {
     constructor(props){
@@ -14,7 +15,7 @@ class UpdateModal extends Component {
     }
 
     getItem = () => {
-        fetch(`http://localhost:3000/graffiti/get/${this.props.id}`, {
+        fetch(`${APIURL}/graffiti/get/${this.props.id}`, {
             method:'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -36,7 +37,7 @@ class UpdateModal extends Component {
     
     itemUpdate = (e, graffiti) => {
         e.preventDefault()
-        fetch(`http://localhost:3000/graffiti/update/${this.props.id}`, {
+        fetch(`${APIURL}/graffiti/update/${this.props.id}`, {
             method: 'PUT',
             body: JSON.stringify(graffiti),
             headers: new Headers({

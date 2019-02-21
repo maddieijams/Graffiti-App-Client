@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import APIURL from '../helpers/environment';
 
 class CreateModal extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class CreateModal extends Component {
 
     handleCreate = (e) => {
         e.preventDefault()
-        fetch('http://localhost:3000/graffiti/create', {
+        fetch(`${APIURL}/graffiti/create`, {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: new Headers({

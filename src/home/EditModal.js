@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Container, Row, Col } from 'reactstrap';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+import APIURL from '../helpers/environment';
 
 const mapStyles = {
   width: '200px',
@@ -19,7 +20,7 @@ class EditModal extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/graffiti/getall', {
+    fetch(`${APIURL}/graffiti/getall`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -34,7 +35,7 @@ class EditModal extends Component {
 
 
   getItem = () => {
-    fetch(`http://localhost:3000/graffiti/get/${this.props.id}`, {
+    fetch(`${APIURL}/graffiti/get/${this.props.id}`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -56,7 +57,7 @@ class EditModal extends Component {
 
   itemUpdate = (e, graffiti) => {
     e.preventDefault()
-    fetch(`http://localhost:3000/graffiti/update/${this.props.id}`, {
+    fetch(`${APIURL}/graffiti/update/${this.props.id}`, {
       method: 'PUT',
       body: JSON.stringify(graffiti),
       headers: new Headers({
