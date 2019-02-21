@@ -1,33 +1,46 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .nav {
+    z-index: 5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin-bottom: 20em;
+    /* height: 60px; */
+    background-color: teal;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  
+  body {
+    height: 100%;
+    position: relative;
+   }
+
+   .main-container {
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    /* display: block; */
+    position: relative;
+    margin: 6em 5em 2em 2em;
+    
+    padding-bottom: 60px; /* height of your footer */
+    }
+
+    h2{
+      color: rgb(199, 23, 53);
+    }
+    
+    .editModal img {
+      height: 200px;
+      width: 200px;
+      margin-left: 9em;
+
+    }
+   footer {
+    height: 60px;
+    position: fixed;
+    background-color: teal;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 4;
+   }
+   
