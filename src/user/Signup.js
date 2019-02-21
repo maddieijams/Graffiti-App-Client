@@ -50,7 +50,7 @@ class Signup extends Component {
                                 <Input id="su_password" type="password" name="password" value={this.state.password} placeholder="enter a password" onChange={this.handleChange} ></Input>
                             </FormGroup>
                             <ModalFooter>
-                            <Button type="submit" onClick={this.props.toggleSignup}color="success">Create User</Button>
+                            <Button type="submit" color="success">Create User</Button>
                             
                             </ModalFooter>
                         </Form>
