@@ -3,12 +3,11 @@ import Sitebar from './home/NavBar';
 import './App.css';
 import Login from './user/Login';
 import Signup from './user/Signup';
-// import Footer from './home/Footer';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import {Container, Row, Col, Button} from 'reactstrap';
 import CreateModal from './home/CreateModal';
 import EditModal from './home/EditModal';
-// import UpdateModal from './home/UpdateModal';
+import APIURL from '../src/helpers/environment';
 
 const imgStyle = {
   width: '550px',
@@ -51,7 +50,7 @@ class App extends Component {
   }
 
   fetchGraffiti = () => {
-    fetch('http://localhost:3000/home', {
+    fetch(`${APIURL}/home`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
