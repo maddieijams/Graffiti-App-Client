@@ -28,12 +28,16 @@ class Login extends Component {
             })
         }).then(res => res.json())
             .then(userInfo => this.props.setToken(userInfo.sessionToken))
-    }
+            this.props.toggleLogin()
+        }
 
+
+        
     render() {
         const closeBtn = <Button className="close" onClick={this.props.toggleLogin}>&times;</Button>;
         return (
             <div>
+                
                 <Modal isOpen={true}>
                     <ModalHeader toggle={this.props.toggleLogin} close={closeBtn}>Login</ModalHeader>
                     <ModalBody>

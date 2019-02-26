@@ -6,8 +6,8 @@ const Footer = (props) => {
         return (
             <footer>
                 <Row>
-                    <Button onClick={() => props.toggleCreate()}>Create</Button>
-                    <Button onClick={() => props.toggleEdit()}>Edit</Button>
+                    <Button onClick={props.toggleCreate}>Create</Button>
+                    <Button onClick={() => props.editClick()}>Edit</Button>
                    
                 </Row>
             </footer>

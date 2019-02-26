@@ -42,13 +42,16 @@ class CreateModal extends Component {
             })
         })
         console.log(this.state)
+        this.props.toggleCreate()
+        this.props.fetchGraffiti()
     }
 
     render() {
+        const closeBtn = <Button className="close" onClick={this.props.toggleCreate}>&times;</Button>;
         return(
             <div>
                 <Modal isOpen={true}>
-                    <ModalHeader>Create a New Tag!</ModalHeader>
+                    <ModalHeader close={closeBtn}>Create a New Tag!</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleCreate}>
                             <FormGroup>
@@ -77,7 +80,7 @@ class CreateModal extends Component {
                             </FormGroup>
 
                             <Button type="submit">Create</Button>
-                            <Button onClick={this.props.toggleCreate}>Close</Button>
+                            
                         </Form>
                     </ModalBody>
                 </Modal>

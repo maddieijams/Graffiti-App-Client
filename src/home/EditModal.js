@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Container, Row, Col, ModalFooter } from 'reactstrap';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import APIURL from '../helpers/environment';
 
@@ -14,28 +14,15 @@ class EditModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      graffiti: [],
+      userGraffiti: [this.props.userGraffiti],
+      graffitiItem: ''
 
     }
   }
 
-  componentDidMount() {
-    fetch(`${APIURL}/graffiti/getall`, {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        'Authorization': this.props.sessionToken
-      })
-    })
-      .then((res) => res.json())
-      .then((graffiti) => this.setState({ graffiti: graffiti },
-        () => console.log(this.state)
-      ))
-  }
-
-
-  getItem = () => {
-    fetch(`${APIURL}/graffiti/get/${this.props.id}`, {
+  getItem = (event) => {
+    console.log(event.target.id)
+    fetch(`${APIURL}/graffiti/get/${event.target.id}`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -44,8 +31,10 @@ class EditModal extends Component {
     })
       .then((res) => res.json())
       .then((item) => {
-        return this.setState({ graffiti: item })
+        console.log(item)
+        this.setState({ graffitiItem: item }, () => console.log(this.state.graffitiItem[1]))
       })
+      .then(() => this.props.handleUpdate())
   }
 
 
@@ -55,119 +44,146 @@ class EditModal extends Component {
     })
   }
 
-  itemUpdate = (e, graffiti) => {
+  // getAfterUpdate = () => {
+    
+
+  itemUpdate = (e) => {
     e.preventDefault()
-    fetch(`${APIURL}/graffiti/update/${this.props.id}`, {
+    console.log(this.state.userGraffiti.title)
+    fetch(`${APIURL}/graffiti/update/${e.target.id}`, {
       method: 'PUT',
-      body: JSON.stringify(graffiti),
+      body: JSON.stringify({
+        title: this.state.title,
+        image: this.state.image,
+        info: this.state.info,
+        lat: this.state.lat,
+        lng: this.state.lng
+      }),
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': this.props.sessionToken
       })
     })
       .then((res) => {
-        this.setState({
-          graffiti: []
-        })
+        this.props.toggleUpdate()
+        this.props.editClick()
+        this.props.fetchGraffiti()
       })
+
   };
 
+  deleteItem = (e) => {
+    fetch(`${APIURL}/graffiti/delete/${e.target.id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ userGraffiti: { id: e.target.id } }),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': this.props.sessionToken
+      })
+    })
+    .then((res) => this.props.getAfterDelete())
+  }
 
   render() {
     const closeBtn = <Button className="close" onClick={this.props.toggleEdit}>&times;</Button>;
+    const closeUpdate = <Button className="close" onClick={this.props.handleUpdate}>&times;</Button>;
     return (
       <React.Fragment>
-        <div>
-          {this.props.editShowing ? 
-        <Modal isOpen={true}>
-          <ModalHeader toggle={this.props.toggleEdit} close={closeBtn}>Edit Your Tags</ModalHeader>
-          <ModalBody>
-            {this.state.graffiti.map((el, index) => {
-             return(
-              <Container className="editModal" key={index}>
-                <Row>
-                  <Col className='text-center'>
-                    <h2>{el.title}</h2>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className='text-center'>
-                    {el.info}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col sm="2">
-                    <Map
-                      google={window.google}
-                      zoom={14}
-                      style={mapStyles}
-
-                      initialCenter={{
-                        lat: el.lat,
-                        lng: el.lng
-                      }} />
-                  </Col>
-                  <Col sm="2">
-                    <img src={el.image} alt="something" />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className="text-center">
-                    <br />
-                    <Button id={el.id}>Delete</Button>
-                    <Button onClick={this.toggleUpdate} id={el.id}>Update</Button>
-                    <br />
-                  </Col>
-                </Row>
-
-              </Container>
-              
-            )})}
-
-          </ModalBody>
-      </Modal>
-      : null }
-
-      </div>
-      {this.props.updateShowing ? 
-            <Modal isOpen={true} toggle={this.toggleUpdate} onOpened={this.getItem} >
-              <ModalHeader>Update </ModalHeader>
+        {this.props.editShowing ?
+          <div className="itemDisplay">
+            <Modal isOpen={true}>
+              <ModalHeader toggle={this.props.toggleEdit} close={closeBtn}>Edit Your Tags</ModalHeader>
               <ModalBody>
-                <Form onSubmit={this.itemUpdate} >
-                  <FormGroup>
-                    <Label for="title">Title</Label>
-                    <Input id="title" type="text" name="title" placeholder={this.state.graffiti.title} onChange={this.handleChange} ></Input>
-                  </FormGroup>
+                {this.props.userGraffiti.map((el, index) => {
 
-                  <FormGroup>
-                    <Label for="image">Image URL</Label>
-                    <Input id="image" type="text" name="image" placeholder={this.state.graffiti.image} onChange={this.handleChange}></Input>
-                  </FormGroup>
+                  return (
+                    <Container className="editModal" key={index}>
+                      <Row>
+                        <Col className='text-center'>
+                          <h2>{el.title}</h2>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col className='text-center'>
+                          {el.info}
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col sm="2">
+                          <Map
+                            google={window.google}
+                            zoom={14}
+                            style={mapStyles}
 
-                  <FormGroup>
-                    <Label for="info">Know Before You Go</Label>
-                    <Input id="info" type="text" name="info" placeholder={this.state.graffiti.info} onChange={this.handleChange} ></Input>
-                  </FormGroup>
+                            initialCenter={{
+                              lat: el.lat,
+                              lng: el.lng
+                            }} />
+                        </Col>
+                        <Col sm="2">
+                          <img src={el.image} alt="something" />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col className="text-center">
+                          <ModalFooter>
+                            <Button onClick={this.deleteItem} id={this.props.userGraffiti[index].id}>Delete</Button>
+                            <Button onClick={this.getItem} id={this.props.userGraffiti[index].id} >Update</Button>
+                          </ModalFooter>
+                        </Col>
+                      </Row>
 
-                  <FormGroup>
-                    <Label for="lat">Latitude</Label>
-                    <Input id="lat" type="text" name="lat" placeholder={this.state.graffiti.lat} onChange={this.handleChange} ></Input>
-                  </FormGroup>
+                    </Container>
+                  )
+                })}
 
-                  <FormGroup>
-                    <Label for="lng">Longitude</Label>
-                    <Input id="lng" type="text" name="lng" placeholder={this.state.graffiti.lng} onChange={this.handleChange} ></Input>
-                  </FormGroup>
-
-                  <Button type="submit" onClick={this.props.toggleCreate} >Create</Button>
-                  <Button >Close</Button>
-                </Form>
               </ModalBody>
             </Modal>
-            : null }
-            
+          </div>
+          : null}
+        <div>
+          {this.props.updateShowing ?
+            <Modal isOpen={true} >
+              <ModalHeader toggle={this.props.handleUpdate} close={closeUpdate}>Update </ModalHeader>
+             
+              <ModalBody>
+                
+                    <Form  onSubmit={this.itemUpdate} >
+                      <FormGroup>
+                        <Label for="title">Title</Label>
+                        <Input id="title" type="text" name="title" defaultValue={this.state.graffitiItem.title} onChange={this.handleChange} ></Input>
+                      </FormGroup>
 
-            </React.Fragment>
+                      <FormGroup>
+                        <Label for="image">Image URL</Label>
+                        <Input id="image" type="text" name="image" defaultValue={this.state.graffitiItem.image} onChange={this.handleChange}></Input>
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label for="info">Know Before You Go</Label>
+                        <Input id="info" type="text" name="info" defaultValue={this.state.graffitiItem.info} onChange={this.handleChange} ></Input>
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label for="lat">Latitude</Label>
+                        <Input id="lat" type="text" name="lat" defaultValue={this.state.graffitiItem.lat} onChange={this.handleChange} ></Input>
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label for="lng">Longitude</Label>
+                        <Input id="lng" type="text" name="lng" defaultValue={this.state.graffitiItem.lng} onChange={this.handleChange} ></Input>
+                      </FormGroup>
+
+                      <Button type="submit" onClick={this.itemUpdate} id={this.state.graffitiItem.id} >Update</Button>
+
+                    </Form>
+          
+              </ModalBody>
+            </Modal>
+            : null}
+        </div>
+
+      </React.Fragment>
     )
   }
 

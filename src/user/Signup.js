@@ -31,6 +31,7 @@ class Signup extends Component {
             .then((userInfo) => {
                 this.props.setToken(userInfo.sessionToken)
             })
+            this.props.toggleSignup()
     }
     
     render() {

@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'bombingregular';
+  src: url('./fonts/bombing-webfont.woff2') format('woff2'),
+        url('./fonts/bombing-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+.title {
+  font-family: 'bombingregular';
+  font-size: 60px !important;
+  color: black !important;
+}
   .nav {
     z-index: 5;
     position: fixed;
@@ -5,8 +19,17 @@
     top: 0;
     width: 100%;
     margin-bottom: 20em;
-    /* height: 60px; */
+    height: 75px;
     background-color: teal;
+    font-family: 'bombingregular';
+  }
+
+  .navBtn {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: black !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
   }
   
   body {
@@ -14,6 +37,10 @@
     position: relative;
    }
 
+   .itemDisplay {
+   background-color: #e8d8ae;
+   border-radius: 2em;
+   }
    .main-container {
     min-height: 100vh; /* will cover the 100% of viewport */
     overflow: hidden;
@@ -24,8 +51,9 @@
     padding-bottom: 60px; /* height of your footer */
     }
 
-    h2{
-      color: rgb(199, 23, 53);
+    h1{
+      font-family: 'bombingregular';
+      font-size: 40px;
     }
     
     .editModal img {
