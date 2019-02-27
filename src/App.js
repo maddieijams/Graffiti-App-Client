@@ -4,7 +4,7 @@ import './App.css';
 import Login from './user/Login';
 import Signup from './user/Signup';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import {Container, Row, Col} from 'reactstrap';
+import {Container, Row, Col, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 import CreateModal from './home/CreateModal';
 import EditModal from './home/EditModal';
 import APIURL from '../src/helpers/environment';
@@ -158,6 +158,7 @@ class App extends Component {
 
           {this.state.graffiti.map((el, index) => (
             <div className="itemDisplay" key = {index}>
+            <PaginationItem>
             <Container >
               <Row>
                 <Col className='text-center'>
@@ -189,6 +190,7 @@ class App extends Component {
                 </Col>
               </Row>
             </Container>
+            </PaginationItem>
             </div>
           ))}
 

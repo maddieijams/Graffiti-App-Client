@@ -44,11 +44,11 @@ class Signup extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label for="username">Username</Label>
-                                <Input id="username" type="text" name="username" value={this.state.username} required placeholder="enter a username" onChange={this.handleChange}  ></Input>
+                                <Input id="username" type="text" name="username" required placeholder="enter a username" onChange={this.handleChange}  ></Input>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="password">Password</Label>
-                                <Input id="su_password" type="password" name="password" minLength='5' required value={this.state.password} placeholder="enter a password" onChange={this.handleChange} ></Input>
+                                <Input id="su_password" type="password" name="password" minLength='5' required placeholder="enter a password" onChange={this.handleChange} ></Input>
                             </FormGroup>
                             
                             <center><Button className="modalBtn" type="submit" color="success">Create User</Button></center>

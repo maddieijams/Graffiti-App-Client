@@ -26,11 +26,17 @@ class Login extends Component {
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
-        }).then(res => res.json())
-            .then(userInfo => this.props.setToken(userInfo.sessionToken))
-            this.props.toggleLogin()
-        }
-
+        }).then(userInfo => {
+            if (userInfo.status === 502){
+                alert('Right username, wrong password. Try again!')
+            } else if (userInfo.status === 500) {
+                alert('We do not recognize you. Try again.')
+            } else {
+                return userInfo.json()
+            .then((json) => this.props.setToken(json.sessionToken))}
+        })
+        .then((res) => this.props.toggleLogin())
+    }
 
         
     render() {
@@ -44,11 +50,11 @@ class Login extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label for="username">Username</Label>
-                                <Input id="username" type="text" name="username" value={this.state.username} placeholder="enter a username" onChange={this.handleChange} ></Input>
+                                <Input id="username" type="text" name="username" placeholder="enter a username" required onChange={this.handleChange} ></Input>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="password">Password</Label>
-                                <Input id="password" type="password" name="password" value={this.state.password} placeholder="enter a password" onChange={this.handleChange}></Input>
+                                <Input id="password" type="password" name="password" placeholder="enter a password" required onChange={this.handleChange}></Input>
                             </FormGroup>
                             
                             <center><Button className="modalBtn" type="submit"  color="success">Login</Button></center>
