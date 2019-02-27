@@ -10,19 +10,16 @@ import EditModal from './home/EditModal';
 import APIURL from '../src/helpers/environment';
 
 const imgStyle = {
-  width: '550px',
-  height: '500px',
-  padding: '2em',
-  marginLeft: '2em',
-  borderRadius: '3em'
+  width: '95%',
+  height: '95%',
+  margin: '1em',
+  borderRadius: '1em'
 }
 
 const mapStyles = {
-  width: '90%',
-  height: '90%',
-  marginLeft: '2em',
-  marginTop: '2em',
-  padding: '2em',
+  width: '95%',
+  height: '95%',
+  margin: '1em',
   borderRadius: '1em'
 
 };
@@ -150,16 +147,16 @@ class App extends Component {
           </div>
 
           {this.state.graffiti.map((el, index) => (
-            <div className="itemDisplay">
-            <Container key = {index}>
+            <div className="itemDisplay" key = {index}>
+            <Container >
               <Row>
                 <Col className='text-center'>
-                  <h1>{el.title}</h1>
+                  <h1 className='itemTitle'>{el.title}</h1>
                 </Col>
               </Row>
                 <Row>
                 <Col className='text-center'>
-                  {el.info}
+                  <p>{el.info}</p>
                 </Col>
               </Row>
               <Row>

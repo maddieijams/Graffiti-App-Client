@@ -1,12 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
 @font-face {
   font-family: 'bombingregular';
   src: url('./fonts/bombing-webfont.woff2') format('woff2'),
         url('./fonts/bombing-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'painterzregular';
+  src: url('./fonts/painterz-webfont.woff2') format('woff2'),
+       url('./fonts/painterz-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'next_ups_blackregular';
+  src: url('./fonts/next_ups_black-webfont.woff2') format('woff2'),
+       url('./fonts/next_ups_black-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'next_upsregular';
+  src: url('./fonts/painterz-webfont.woff2') format('woff2'),
+       url('./fonts/painterz-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
 }
 
+
+/*navbar*/
 .title {
   font-family: 'bombingregular';
   font-size: 60px !important;
@@ -22,6 +50,11 @@
     height: 75px;
     background-color: teal;
     font-family: 'bombingregular';
+    
+  }
+
+  .nav img {
+    height:70px;
   }
 
   .navBtn {
@@ -31,44 +64,77 @@
     font-size: 20px !important;
     font-weight: bold !important;
   }
-  
-  body {
-    height: 100%;
-    position: relative;
-   }
-
+   
+  /**********home*************/
    .itemDisplay {
    background-color: #e8d8ae;
    border-radius: 2em;
+   margin: 5em;
+   padding-top: 2em;
+   padding-bottom: 3em;
+   padding-right: 3em;
+   padding-left: 3em;
    }
    .main-container {
-    min-height: 100vh; /* will cover the 100% of viewport */
+    min-height: 100vh; 
     overflow: hidden;
-    /* display: block; */
     position: relative;
-    margin: 6em 5em 2em 2em;
-    
-    padding-bottom: 60px; /* height of your footer */
+    margin-top: 3em ;
     }
 
-    h1{
-      font-family: 'bombingregular';
-      font-size: 40px;
+    .itemTitle {
+      font-family: 'painterzregular';
     }
     
-    .editModal img {
-      height: 200px;
-      width: 200px;
-      margin-left: 9em;
-
+    p {
+      font-family: 'Quicksand', sans-serif;
     }
-   footer {
-    height: 60px;
-    position: fixed;
-    background-color: teal;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 4;
-   }
+    
+    /*modals*/
+     .modal-header {
+      background-color: #e8d8ae;
+    } 
+
+       .modalTitle {
+        font-family: 'bombingregular' !important;
+        font-size: 35px !important;
+      }
+
+      .editDisplay {
+        width: 75vw !important;
+        max-width: 100vw !important;
+      }
+    
+    .editBtn {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: black !important;
+      font-family: 'bombingregular' ;
+      font-size: 35px !important;
+    }
+
+    .modalBtn {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: black !important;
+      font-family: 'painterzregular';
+      font-size: 35px !important;
+    }
+    
+    /****hovers***/
+    Button :hover {
+      font-size: 50px !important;
+    }
+
+    .editBtn :hover {
+      width: 50px !important;
+      height: 40px !important;
+    }
+
+    Button :visited {
+      box-shadow: none;
+    }
+
+
+  
    

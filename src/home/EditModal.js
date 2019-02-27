@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Container, Row, Col, ModalFooter } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Container, Row, Col} from 'reactstrap';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import APIURL from '../helpers/environment';
 
 const mapStyles = {
-  width: '200px',
-  height: '200px',
-  padding: '0.5em'
-
+  width: '95%',
+  height: '95%',
+  borderRadius: '1em'
 };
+
+const imgStyle = {
+  height: '95%',
+  width: '95%',
+  borderRadius: '1em'
+}
 
 class EditModal extends Component {
   constructor(props) {
@@ -43,8 +48,6 @@ class EditModal extends Component {
       [e.target.name]: e.target.value
     })
   }
-
-  // getAfterUpdate = () => {
     
 
   itemUpdate = (e) => {
@@ -85,14 +88,14 @@ class EditModal extends Component {
   }
 
   render() {
-    const closeBtn = <Button className="close" onClick={this.props.toggleEdit}>&times;</Button>;
+    const closeBtn = <Button className="close" id="xButton" onClick={this.props.toggleEdit}>&times;</Button>;
     const closeUpdate = <Button className="close" onClick={this.props.handleUpdate}>&times;</Button>;
     return (
       <React.Fragment>
         {this.props.editShowing ?
-          <div className="itemDisplay">
-            <Modal isOpen={true}>
-              <ModalHeader toggle={this.props.toggleEdit} close={closeBtn}>Edit Your Tags</ModalHeader>
+          <div >
+            <Modal className="editDisplay" isOpen={true}>
+              <ModalHeader  toggle={this.props.toggleEdit} close={closeBtn}><span className="modalTitle">Edit Your Tags</span></ModalHeader>
               <ModalBody>
                 {this.props.userGraffiti.map((el, index) => {
 
@@ -100,16 +103,16 @@ class EditModal extends Component {
                     <Container className="editModal" key={index}>
                       <Row>
                         <Col className='text-center'>
-                          <h2>{el.title}</h2>
+                          <h2 className="itemTitle">{el.title}</h2>
                         </Col>
                       </Row>
                       <Row>
                         <Col className='text-center'>
-                          {el.info}
+                          <p>{el.info}</p>
                         </Col>
                       </Row>
-                      <Row>
-                        <Col sm="2">
+                      <Row className='text-center'>
+                        <Col className='text-center' >
                           <Map
                             google={window.google}
                             zoom={14}
@@ -120,16 +123,16 @@ class EditModal extends Component {
                               lng: el.lng
                             }} />
                         </Col>
-                        <Col sm="2">
-                          <img src={el.image} alt="something" />
+                        <Col className='text-center' >
+                          <img src={el.image} style={imgStyle} alt="something" />
                         </Col>
                       </Row>
                       <Row>
-                        <Col className="text-center">
-                          <ModalFooter>
-                            <Button onClick={this.deleteItem} id={this.props.userGraffiti[index].id}>Delete</Button>
-                            <Button onClick={this.getItem} id={this.props.userGraffiti[index].id} >Update</Button>
-                          </ModalFooter>
+                        <Col>
+                          {/* <ModalFooter> */}
+                            <Button className="editBtn" onClick={this.deleteItem} id={this.props.userGraffiti[index].id}>Delete</Button>
+                            <Button className="editBtn" onClick={this.getItem} id={this.props.userGraffiti[index].id} >Update</Button>
+                          {/* </ModalFooter> */}
                         </Col>
                       </Row>
 
@@ -144,7 +147,7 @@ class EditModal extends Component {
         <div>
           {this.props.updateShowing ?
             <Modal isOpen={true} >
-              <ModalHeader toggle={this.props.handleUpdate} close={closeUpdate}>Update </ModalHeader>
+              <ModalHeader toggle={this.props.handleUpdate} close={closeUpdate}><span className="modalTitle">Update Your Tag</span></ModalHeader>
              
               <ModalBody>
                 
@@ -174,7 +177,7 @@ class EditModal extends Component {
                         <Input id="lng" type="text" name="lng" defaultValue={this.state.graffitiItem.lng} onChange={this.handleChange} ></Input>
                       </FormGroup>
 
-                      <Button type="submit" onClick={this.itemUpdate} id={this.state.graffitiItem.id} >Update</Button>
+                      <Button className="modalBtn" type="submit" onClick={this.itemUpdate} id={this.state.graffitiItem.id} >Update</Button>
 
                     </Form>
           

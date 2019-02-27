@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Button} from 'reactstrap';
-import Create from '../assets/create.png';
-import Edit from '../assets/edit.png';
-import Spray from '../assets/spray.png'
+import Spray from '../assets/spray4.png'
 
 const sticky = {
     position: 'fixed'
@@ -26,7 +24,7 @@ class Sitebar extends Component {
         return (
             <div>
                 <Navbar className="nav" style={sticky} light expand="sm">
-                    <NavbarBrand className="title">Tagged!</NavbarBrand>
+                    <NavbarBrand className="title"><img src={Spray} alt="spray"/>Tagged!</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>

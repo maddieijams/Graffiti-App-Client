@@ -51,35 +51,35 @@ class CreateModal extends Component {
         return(
             <div>
                 <Modal isOpen={true}>
-                    <ModalHeader close={closeBtn}>Create a New Tag!</ModalHeader>
+                    <ModalHeader close={closeBtn}><span className="modalTitle">Create a New Tag!</span></ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleCreate}>
                             <FormGroup>
                                 <Label for="title">Title</Label>
-                                <Input id="title" type="text" name="title" value={this.state.title} onChange={this.handleChange} ></Input>
+                                <Input id="title" type="text" name="title" value={this.state.title} onChange={this.handleChange} required ></Input>
                             </FormGroup>
 
                             <FormGroup>
                                 <Label for="image">Image URL</Label>
-                                <Input id="image" type="text" name="image" value={this.state.image} onChange={this.handleChange}></Input>
+                                <Input id="image" type="text" name="image" value={this.state.image} onChange={this.handleChange} required></Input>
                             </FormGroup>
 
                             <FormGroup>
                             <Label for="info">Know Before You Go</Label>
-                                <Input id="info" type="text" name="info" value={this.state.info} onChange={this.handleChange} ></Input>
+                                <Input id="info" type="text" name="info" value={this.state.info} onChange={this.handleChange} required></Input>
                             </FormGroup>
 
                             <FormGroup>
                             <Label for="lat">Latitude</Label>
-                                <Input id="lat" type="text" name="lat" value={this.state.lat} onChange={this.handleChange} ></Input>
+                                <Input id="lat" type="text" name="lat" value={this.state.lat} onChange={this.handleChange} required></Input>
                             </FormGroup>
 
                             <FormGroup>
                             <Label for="lng">Longitude</Label>
-                                <Input id="lng" type="text" name="lng" value={this.state.lng} onChange={this.handleChange} ></Input>
+                                <Input id="lng" type="text" name="lng" value={this.state.lng} onChange={this.handleChange} required></Input>
                             </FormGroup>
 
-                            <Button type="submit">Create</Button>
+                            <center><Button className="modalBtn" type="submit">Create</Button></center>
                             
                         </Form>
                     </ModalBody>

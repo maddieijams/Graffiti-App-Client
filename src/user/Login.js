@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import APIURL from '../helpers/environment';
 
 class Login extends Component {
@@ -39,7 +39,7 @@ class Login extends Component {
             <div>
                 
                 <Modal isOpen={true}>
-                    <ModalHeader toggle={this.props.toggleLogin} close={closeBtn}>Login</ModalHeader>
+                    <ModalHeader toggle={this.props.toggleLogin} close={closeBtn}><span className="modalTitle">Login</span></ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
@@ -50,9 +50,9 @@ class Login extends Component {
                                 <Label for="password">Password</Label>
                                 <Input id="password" type="text" name="password" value={this.state.password} placeholder="enter a password" onChange={this.handleChange}></Input>
                             </FormGroup>
-                            <ModalFooter>
-                            <Button type="submit"  color="success">Login</Button>
-                            </ModalFooter>
+                            
+                            <center><Button className="modalBtn" type="submit"  color="success">Login</Button></center>
+                            
                         </Form>
                     </ModalBody>
                 </Modal>
