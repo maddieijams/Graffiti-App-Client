@@ -66,6 +66,18 @@
   }
    
   /**********home*************/
+  .main-container {
+    min-height: 100vh; 
+    overflow: hidden;
+    position: relative;
+    margin-top: 3em ;
+    }
+
+.pagination {
+  justify-content: center;
+  
+}
+
    .itemDisplay {
    background-color: #e8d8ae;
    border-radius: 2em;
@@ -74,13 +86,10 @@
    padding-bottom: 3em;
    padding-right: 3em;
    padding-left: 3em;
-   }
-   .main-container {
-    min-height: 100vh; 
-    overflow: hidden;
-    position: relative;
-    margin-top: 3em ;
-    }
+   display: block;
+   float: center;
+   
+  }
 
     .itemTitle {
       font-family: 'painterzregular';

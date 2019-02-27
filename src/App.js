@@ -14,19 +14,14 @@ const imgStyle = {
   height: '95%',
   margin: '1em',
   borderRadius: '1em'
-}
+};
 
 const mapStyles = {
   width: '95%',
   height: '95%',
   margin: '1em',
-  borderRadius: '1em',
+  borderRadius: '1em'
 };
-
-const markerStyle = {
-  color: 'teal',
-  backgroundColor: 'teal'
-}
 
 class App extends Component {
   constructor() {
@@ -39,7 +34,9 @@ class App extends Component {
       editShowing: false,
       updateShowing: false,
       graffiti: [],
-      userGraffiti:[]
+      userGraffiti:[],
+      currentPageNumber: 1,
+      itemsPerPage: ''
     }
   }
 
@@ -144,9 +141,7 @@ class App extends Component {
     this.toggleUpdate()
   }
 
-
   render() {
-    // const google= this.props.google;
     return (
       <React.Fragment>
         <div className="main-container">
@@ -155,12 +150,13 @@ class App extends Component {
             {this.state.loginShowing ? <Login setToken={this.setSessionState} toggleLogin={this.toggleLogin}  /> : null}
             {this.state.signupShowing ? <Signup setToken={this.setSessionState} toggleSignup={this.toggleSignup} /> : null}
           </div>
+          <Pagination>
+            <PaginationItem >
 
           {this.state.graffiti.map((el, index) => (
             <div className="itemDisplay" key = {index}>
-            <PaginationItem>
-            <Container >
-              <Row>
+            <Container>
+              <Row >
                 <Col className='text-center'>
                   <h1 className='itemTitle'>{el.title}</h1>
                 </Col>
@@ -171,7 +167,7 @@ class App extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col md="6" sm="12">
+                <Col lg="6"  >
                   <Map
                     google={window.google}
                     zoom={14}
@@ -185,14 +181,15 @@ class App extends Component {
                     />
                     </Map>
                 </Col>
-                <Col md="6" sm="12">
+                <Col lg="6" >
                   <img src={el.image} style={imgStyle} alt="something" />
                 </Col>
               </Row>
             </Container>
-            </PaginationItem>
             </div>
           ))}
+            </PaginationItem>
+          </Pagination>
 
           {this.state.createShowing ? <CreateModal toggleCreate={this.toggleCreate} fetchGraffiti={this.fetchGraffiti} sessionToken={this.state.sessionToken} /> : null}
 
