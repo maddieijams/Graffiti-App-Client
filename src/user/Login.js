@@ -48,7 +48,7 @@ class Login extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label for="password">Password</Label>
-                                <Input id="password" type="text" name="password" value={this.state.password} placeholder="enter a password" onChange={this.handleChange}></Input>
+                                <Input id="password" type="password" name="password" value={this.state.password} placeholder="enter a password" onChange={this.handleChange}></Input>
                             </FormGroup>
                             
                             <center><Button className="modalBtn" type="submit"  color="success">Login</Button></center>
