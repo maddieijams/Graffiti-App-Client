@@ -88,7 +88,7 @@ class EditModal extends Component {
   }
 
   render() {
-    const closeBtn = <Button className="close" id="xButton" onClick={this.props.toggleEdit}>&times;</Button>;
+    const closeBtn = <Button className="close" onClick={this.props.toggleEdit}>&times;</Button>;
     const closeUpdate = <Button className="close" onClick={this.props.handleUpdate}>&times;</Button>;
     return (
       <React.Fragment>
@@ -96,6 +96,7 @@ class EditModal extends Component {
           <div >
             <Modal className="editDisplay" isOpen={true}>
               <ModalHeader  toggle={this.props.toggleEdit} close={closeBtn}><span className="modalTitle">Edit Your Tags</span></ModalHeader>
+              {this.props.userGraffiti.length > 0 ?
               <ModalBody>
                 {this.props.userGraffiti.map((el, index) => {
 
@@ -129,10 +130,10 @@ class EditModal extends Component {
                       </Row>
                       <Row>
                         <Col>
-                          {/* <ModalFooter> */}
+                         
                             <Button className="editBtn" onClick={this.deleteItem} id={this.props.userGraffiti[index].id}>Delete</Button>
                             <Button className="editBtn" onClick={this.getItem} id={this.props.userGraffiti[index].id} >Update</Button>
-                          {/* </ModalFooter> */}
+                          
                         </Col>
                       </Row>
 
@@ -141,6 +142,7 @@ class EditModal extends Component {
                 })}
 
               </ModalBody>
+              : <div><ModalBody><p><br/>You don't have any tags yet.</p> </ModalBody> <Button className="modalBtn" onClick={this.props.editCreateToggle}><h1>Create?</h1></Button></div>}
             </Modal>
           </div>
           : null}

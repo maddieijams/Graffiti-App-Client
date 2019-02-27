@@ -3,7 +3,7 @@ import Sitebar from './home/NavBar';
 import './App.css';
 import Login from './user/Login';
 import Signup from './user/Signup';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import {Container, Row, Col} from 'reactstrap';
 import CreateModal from './home/CreateModal';
 import EditModal from './home/EditModal';
@@ -20,9 +20,13 @@ const mapStyles = {
   width: '95%',
   height: '95%',
   margin: '1em',
-  borderRadius: '1em'
-
+  borderRadius: '1em',
 };
+
+const markerStyle = {
+  color: 'teal',
+  backgroundColor: 'teal'
+}
 
 class App extends Component {
   constructor() {
@@ -118,6 +122,11 @@ class App extends Component {
     })
   }
 
+  editCreateToggle = (e) => {
+    this.toggleCreate()
+    this.toggleEdit()
+  }
+
   toggleEdit = (e) => {
     this.setState({
       editShowing: !this.state.editShowing
@@ -137,6 +146,7 @@ class App extends Component {
 
 
   render() {
+    // const google= this.props.google;
     return (
       <React.Fragment>
         <div className="main-container">
@@ -169,7 +179,10 @@ class App extends Component {
                     initialCenter={{
                       lat: el.lat,
                       lng: el.lng
-                    }} />
+                    }} >
+                    <Marker title={el.title} 
+                    />
+                    </Map>
                 </Col>
                 <Col md="6" sm="12">
                   <img src={el.image} style={imgStyle} alt="something" />
@@ -181,7 +194,7 @@ class App extends Component {
 
           {this.state.createShowing ? <CreateModal toggleCreate={this.toggleCreate} fetchGraffiti={this.fetchGraffiti} sessionToken={this.state.sessionToken} /> : null}
 
-            <EditModal getAfterDelete={this.getAfterDelete} editClick={this.editClick} fetchGraffiti={this.fetchGraffiti} toggleEdit={this.toggleEdit} toggleUpdate={this.toggleUpdate} handleUpdate={this.handleUpdate} sessionToken={this.state.sessionToken} editShowing={this.state.editShowing} updateShowing={this.state.updateShowing} userGraffiti={this.state.userGraffiti} /> 
+            <EditModal editCreateToggle={this.editCreateToggle} getAfterDelete={this.getAfterDelete} editClick={this.editClick} fetchGraffiti={this.fetchGraffiti} toggleEdit={this.toggleEdit} toggleUpdate={this.toggleUpdate} handleUpdate={this.handleUpdate} sessionToken={this.state.sessionToken} editShowing={this.state.editShowing} updateShowing={this.state.updateShowing} userGraffiti={this.state.userGraffiti} /> 
           
         </div>
 
