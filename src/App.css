@@ -38,8 +38,10 @@
 .title {
   font-family: 'bombingregular';
   font-size: 60px !important;
-  color: black !important;
+  color: black  !important;
 }
+
+
   .nav {
     z-index: 5;
     position: fixed;

@@ -24,7 +24,7 @@ class Sitebar extends Component {
         return (
             <div>
                 <Navbar className="nav" style={sticky} light expand="sm">
-                    <NavbarBrand className="title"><img src={Spray} alt="spray"/>Tagged!</NavbarBrand>
+                    <NavbarBrand className="title"><img src={Spray} className="spray" alt="spray"/>Tagged!</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>

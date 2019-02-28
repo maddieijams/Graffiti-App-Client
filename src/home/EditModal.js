@@ -133,7 +133,7 @@ class EditModal extends Component {
                          
                             <Button className="editBtn" onClick={this.deleteItem} id={this.props.userGraffiti[index].id}>Delete</Button>
                             <Button className="editBtn" onClick={this.getItem} id={this.props.userGraffiti[index].id} >Update</Button>
-                          
+                            
                         </Col>
                       </Row>
 
