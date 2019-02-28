@@ -115,6 +115,10 @@
         width: 75vw !important;
         max-width: 100vw !important;
       }
+
+      .buttons {
+        justify-content: right;
+      }
     
     .editBtn {
       background-color: transparent !important;

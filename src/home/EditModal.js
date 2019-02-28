@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Container, Row, Col} from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Container, Row, Col, ModalFooter} from 'reactstrap';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import APIURL from '../helpers/environment';
 
@@ -130,10 +130,10 @@ class EditModal extends Component {
                       </Row>
                       <Row>
                         <Col>
-                         
+                         <ModalFooter>
                             <Button className="editBtn" onClick={this.deleteItem} id={this.props.userGraffiti[index].id}>Delete</Button>
                             <Button className="editBtn" onClick={this.getItem} id={this.props.userGraffiti[index].id} >Update</Button>
-                            
+                            </ModalFooter>
                         </Col>
                       </Row>
 
