@@ -51,7 +51,7 @@ class App extends Component {
   fetchGraffiti = () => {
     fetch(`${APIURL}/home`, {
       method: "GET",
-      mode: "no-cors",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
