@@ -56,7 +56,10 @@ class App extends Component {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.info("raw res", res, res.json());
+        return res.json() ? res.json() : [];
+      })
       .then((graffiti) =>
         this.setState({ graffiti: graffiti }, () =>
           console.log(this.state.graffiti)
