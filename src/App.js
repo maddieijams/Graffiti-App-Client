@@ -58,7 +58,7 @@ class App extends Component {
     })
       .then((res) => {
         console.info("raw res", res);
-        return res.json() ? res.json() : [];
+        return res.json();
       })
       .then((graffiti) =>
         this.setState({ graffiti: graffiti }, () =>
